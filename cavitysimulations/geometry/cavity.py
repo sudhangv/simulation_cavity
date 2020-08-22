@@ -52,7 +52,8 @@ def _a_tapering(geom=None, n_segments=20, material_holes=mp.vacuum):
     print(os.getcwd())
 
     _cavity = Lattice(Lx=n_segments)
-    _cavity.polynomial_elliptical_hole_taper(20, 0.15, 0.35, 0.65, 0.317, 0.346)
+    _n_taper = 10
+    _cavity.polynomial_elliptical_hole_taper(_n_taper, 0.15, 0.35, 0.65, 0.3178, 0.347)
     _cavity.apply_poly_spacing()
 
     # cavity holes
