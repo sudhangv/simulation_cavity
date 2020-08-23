@@ -21,9 +21,9 @@ def main():
     boundary_layers = get_boundary_layer(sim2d=False)
     
     fcen = 1/1.54
-    df = 0.1
+    df = 0.2
     sources = [mp.Source(mp.GaussianSource(fcen, fwidth=df), 
-                         component=mp.Ey, 
+                         component=mp.Hz, 
                          center=mp.Vector3())]
     
     symmetries = [mp.Mirror(mp.X,+1), mp.Mirror(mp.Y,-1), mp.Mirror(mp.Z,+1)]
@@ -36,12 +36,12 @@ def main():
                         symmetries=symmetries,
                         progress_interval=100,)
     
-    h = mp.Harminv(mp.Ey, mp.Vector3(0, 0, 0), fcen, df)
+    h = mp.Harminv(mp.Hz, mp.Vector3(0, 0, 0), fcen, df)
     time_after_source = 500
     # Don't output eps anymore to save disk space
     sim.run(mp.after_sources(h),
             until_after_sources=time_after_source)
-    
+   # print(m.freq for m in h.modes)
     #visualize_sim_cell(sim)
     print("Modal Volume: {}".format(sim.modal_volume_in_box()))
     		
