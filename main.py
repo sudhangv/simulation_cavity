@@ -21,7 +21,7 @@ def main():
     boundary_layers = get_boundary_layer(sim2d=False)
     
     fcen = 1/1.54
-    df = 0.2
+    df = 0.1
     sources = [mp.Source(mp.GaussianSource(fcen, fwidth=df), 
                          component=mp.Hz, 
                          center=mp.Vector3())]
@@ -41,7 +41,9 @@ def main():
     # Don't output eps anymore to save disk space
     sim.run(mp.after_sources(h),
             until_after_sources=time_after_source)
-   # print(m.freq for m in h.modes)
+    print("------------------@@@@------------")
+    print([m.freq for m in h.modes])
+    print("------------------@@@@------------")
     #visualize_sim_cell(sim)
     print("Modal Volume: {}".format(sim.modal_volume_in_box()))
     		
